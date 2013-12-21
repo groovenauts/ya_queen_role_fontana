@@ -14,7 +14,7 @@ module YaQueenRoleFontana
         File.join(@root, path)
       end
     end
-    class Rails
+    class RailsImpl
       attr_reader :root
       def initialize(root)
         @root = RailsRoot.new(root)
@@ -36,10 +36,10 @@ module YaQueenRoleFontana
       # set :repository, root_dir
 
       unless defined?(::Rails)
-        Object.const_set(:Rails, YaQueenRoleFontana::Asset::Rails.new(root_dir))
+        Object.const_set(:Rails, RailsImpl.new(root_dir))
       end
 
-      path = Rails.root.join("config/asset_drivers.yml.erb").to_s
+      path = ::Rails.root.join("config/asset_drivers.yml.erb").to_s
       asset_drivers_config = YAML.load(ERB.new(File.read( path )).result)
       set :deploy_from, asset_drivers_config["file"]["file_path"]
 
