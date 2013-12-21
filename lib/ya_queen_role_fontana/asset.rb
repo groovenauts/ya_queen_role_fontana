@@ -6,6 +6,21 @@ require "ya_queen"
 module YaQueenRoleFontana
   class Asset < YaQueen::Base
 
+    class RailsRoot
+      def initialize(root)
+        @root = root
+      end
+      def join(path)
+        File.join(root, path)
+      end
+    end
+    class Rails
+      attr_reader :root
+      def initialize(root)
+        @root = RailsRoot.new(root)
+      end
+    end
+
     def implement_each_task(host, options)
       role :web, host
       role :asset, host
@@ -18,22 +33,10 @@ module YaQueenRoleFontana
 
       # デプロイと言っても通常のdeployの仕組みは使わないので、この辺の設定は不要
       # set :scm, :none
-      # set :repository, File.expand_path("../../", File.dirname(__FILE__))
+      # set :repository, root_dir
 
       unless defined?(::Rails)
-
-        m = Module.new do
-          def self.root
-            unless @root
-              @root = Object.new
-              def @root.join(path)
-                File.join(File.expand_path("../../..", __FILE__), path)
-              end
-            end
-            @root
-          end
-        end
-        Object.const_set(:Rails, m)
+        Object.const_set(:Rails, YaQueenRoleFontana::Asset::Rails.new(root_dir))
       end
 
       path = Rails.root.join("config/asset_drivers.yml.erb").to_s

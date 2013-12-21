@@ -24,7 +24,7 @@ module YaQueenRoleFontana
       set :bundle_dir, "./vendor/bundle"
       set :bundle_without, [:development, :test, :deploy]
       set :scm, :none
-      set :repository, File.expand_path("../../", File.dirname(__FILE__))
+      set :repository, root_dir
 
       set :workspaces, config["workspaces"]
       set :workspaces_scm    , config["workspaces"]["scm"]

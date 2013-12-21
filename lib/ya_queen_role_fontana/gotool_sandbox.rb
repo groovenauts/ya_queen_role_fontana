@@ -10,7 +10,7 @@ module YaQueenRoleFontana
       set :user, config['user']
       set :scm,            :git
       set :scm_verbose,    true
-      set :repository,     "git@github.com:tengine/fontana.git"
+      # set :repository,     config["repository"] # deploy.rbかステージファイルで指定される
       set :default_branch, "master"
 
       set :branch do
