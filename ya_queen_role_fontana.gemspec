@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["t-akima@groovenauts.jp"]
   spec.description   = %q{defines server deployment role for fontana}
   spec.summary       = %q{defines server deployment role for fontana}
-  spec.homepage      = "secret"
+  spec.homepage      = ""
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
