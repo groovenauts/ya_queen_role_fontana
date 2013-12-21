@@ -11,7 +11,7 @@ module YaQueenRoleFontana
         @root = root
       end
       def join(path)
-        File.join(root, path)
+        File.join(@root, path)
       end
     end
     class Rails
