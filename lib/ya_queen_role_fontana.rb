@@ -20,4 +20,13 @@ module YaQueenRoleFontana
   autoload :Mongo   , "ya_queen_role_fontana/mongo"   # production only
   autoload :Tengine , "ya_queen_role_fontana/tengine" # production only
 
+
+  class << self
+    def configure(context, path)
+      config = Config.new(context, path)
+      yield(config) if block_given?
+      config
+    end
+  end
+
 end
