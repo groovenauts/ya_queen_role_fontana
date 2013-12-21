@@ -26,7 +26,7 @@ module YaQueenRoleFontana
 
       # Configサーバ
       set :config_server_path,       fetch(:config_server_path,          config['path'])
-      set :config_server_repository, fetch(:config_server_repository,    config['repository'])
+      set :config_server_repository, fetch(:repository          ,        config['repository'])
       set :config_server_branch,     fetch(:config_server_branch,        config['branch'])
 
       super
